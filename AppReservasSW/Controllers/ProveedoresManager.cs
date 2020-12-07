@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using AppReservasSW.Models;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
@@ -7,10 +6,10 @@ using System.Text;
 
 namespace AppReservasSW.Controllers
 {
-    public class HotelManager
+    public class ProveedoresManager
     {
-        const string URL = "http://localhost:49220/api/hotel/";
-        const string URLIngresar = "http://localhost:49220/api/hotel/ingresar/";
+        const string URL = "http://localhost:49220/api/proveedor/";
+        const string URLIngresar = "http://localhost:49220/api/proveedor/ingresar/";
 
         HttpClient GetClient(string token)
         {
@@ -22,39 +21,36 @@ namespace AppReservasSW.Controllers
             return client;
         }
 
-        public async Task<IEnumerable<Hotel>> ObtenerHoteles(string token)
+        public async Task<IEnumerable<Models.Proveedores>> ObtenerProveedores(string token)
         {
             HttpClient client = GetClient(token);
             string resultado = await client.GetStringAsync(URL);
 
-            return JsonConvert.DeserializeObject<IEnumerable<Hotel>>(resultado);
+            return JsonConvert.DeserializeObject<IEnumerable<Models.Proveedores>>(resultado);
         }
 
-        public async Task<IEnumerable<Hotel>> ObtenerHotel(string token, string codigo)
+        public async Task<IEnumerable<Models.Proveedores>> ObtenerProveedor(string token, string codigo)
         {
             HttpClient client = GetClient(token);
             string resultado = await client.GetStringAsync(URL + codigo);
-            return JsonConvert.DeserializeObject<IEnumerable<Hotel>>(resultado);
+            return JsonConvert.DeserializeObject<IEnumerable<Models.Proveedores>>(resultado);
         }
-
-        public async Task<Hotel> Ingresar(Hotel hotel, string token)
+        public async Task<Models.Proveedores> Ingresar(Models.Proveedores proveedores, string token)
         {
             HttpClient client = GetClient(token);
             var response = await client.PostAsync(URLIngresar,
-                new StringContent(JsonConvert.SerializeObject(hotel), Encoding.UTF8,
+                new StringContent(JsonConvert.SerializeObject(proveedores), Encoding.UTF8,
                 "application/json"));
-            return JsonConvert.DeserializeObject<Hotel>(await response.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<Models.Proveedores>(await response.Content.ReadAsStringAsync());
         }
-
-        public async Task<Hotel> Actualizar(Hotel hotel, string token)
+        public async Task<Models.Proveedores> Actualizar(Models.Proveedores proveedores, string token)
         {
             HttpClient client = GetClient(token);
             var response = await client.PutAsync(URL,
-                new StringContent(JsonConvert.SerializeObject(hotel), Encoding.UTF8,
+                new StringContent(JsonConvert.SerializeObject(proveedores), Encoding.UTF8,
                 "application/json"));
-            return JsonConvert.DeserializeObject<Hotel>(await response.Content.ReadAsStringAsync());
+            return JsonConvert.DeserializeObject<Models.Proveedores>(await response.Content.ReadAsStringAsync());
         }
-
         public async Task<string> Eliminar(string codigo, string token)
         {
             HttpClient client = GetClient(token);

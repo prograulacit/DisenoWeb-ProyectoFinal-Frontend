@@ -1,10 +1,10 @@
-﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Reserva.aspx.cs" Inherits="AppReservasSW.Views.Reserva" %>
-
+﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Autos.aspx.cs" Inherits="AppReservasSW.Views.Autos" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="../Public/general-style.css">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <asp:GridView CssClass="content_table" ID="grdReservas" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+    
+    <asp:GridView CssClass="content_table" ID="gridView" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -19,19 +19,57 @@
     <table class="form_table">
         <tr>
             <td class="modal-sm" style="width: 190px">
-                <asp:Label ID="Label2" runat="server" Text="Código reserva"></asp:Label>
-            </td>
+                Código</td>
             <td>
-                <asp:TextBox class="form-control" ID="Textbox_CodigoReserva" runat="server" type="number"></asp:TextBox>
+                <asp:TextBox class="form-control" ID="TextBox_codigo" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="modal-sm" style="width: 190px">
-                <asp:Label ID="Label1" runat="server" Text="Código de habitación"></asp:Label>
-            </td>
+                Marca</td>
             <td>
-                <asp:DropDownList class="form-control" ID="DropDownList_CodigoHabitacion" runat="server"></asp:DropDownList>
+                <asp:DropDownList class="form-control" ID="DropDownList_marca" runat="server"></asp:DropDownList>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="modal-sm" style="width: 190px">
+                Modelo</td>
+            <td>
+                <asp:DropDownList class="form-control" ID="DropDownList_modelo" runat="server"></asp:DropDownList>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="modal-sm" style="width: 190px">
+                Combustible</td>
+            <td>
+                <asp:DropDownList class="form-control" ID="DropDownList_combustible" runat="server"></asp:DropDownList>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="modal-sm" style="width: 190px">
+                Sucursal</td>
+            <td>
+                <asp:DropDownList class="form-control" ID="DropDownList_sucursal" runat="server"></asp:DropDownList>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="modal-sm" style="width: 190px">
+                Cantidad</td>
+            <td>
+                <asp:TextBox class="form-control" ID="TextBox_cantidad" runat="server"></asp:TextBox>
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="modal-sm" style="width: 190px">
+                Precio</td>
+            <td>
+                <asp:TextBox class="form-control" ID="TextBox_precio" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
@@ -42,35 +80,7 @@
         </tr>
         <tr>
             <td class="modal-sm" style="width: 190px">
-                <asp:Label CssClass="h4" ID="Label3" runat="server" Text="Fecha de entrada"></asp:Label>
-            </td>
-            <td class="modal-sm" style="width: 190px">
-                <asp:Label CssClass="h4" ID="Label4" runat="server" Text="Fecha de salida"></asp:Label>
-            </td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td>
-                <asp:Calendar ID="Calendar_FechaEntrada" runat="server"></asp:Calendar>
-            </td>
-            <td>
-                <asp:Calendar ID="Calendar_FechaSalida" runat="server"></asp:Calendar>
-            </td>
-        </tr>
-        <tr>
-            <td class="modal-sm" style="width: 190px">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-
-        <tr>
-            <td class="modal-sm" style="width: 190px">&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-        </tr>
-        <tr>
-            <td class="modal-sm" style="width: 190px">
-                <asp:Button CssClass="btn btn-light" ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnIngresar_Click" />
+                <asp:Button CssClass="btn btn-light" ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click"/>
                 <asp:Button CssClass="btn btn-light" ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
             </td>
             <td>
@@ -80,7 +90,7 @@
         </tr>
         <tr>
             <td class="modal-sm" style="width: 190px; height: 21px;">
-                <asp:Label ID="lblStatus" runat="server" Text="Label" ForeColor="#006600" Visible="False"></asp:Label>
+                <asp:Label ID="Label_status" runat="server" Text="Label" ForeColor="#006600" Visible="False"></asp:Label>
             </td>
             <td style="height: 21px"></td>
             <td style="height: 21px"></td>

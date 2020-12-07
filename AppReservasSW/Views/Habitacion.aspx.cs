@@ -26,9 +26,16 @@ namespace AppReservasSW.Views
 
         private async void InicializarControles()
         {
-            habitaciones = await habitacionManager.ObtenerHabitaciones(VG.usuarioActual.CadenaToken);
-            grdHabitacion.DataSource = habitaciones.ToList();
-            grdHabitacion.DataBind();
+            try
+            {
+                habitaciones = await habitacionManager.ObtenerHabitaciones(VG.usuarioActual.CadenaToken);
+                grdHabitacion.DataSource = habitaciones.ToList();
+                grdHabitacion.DataBind();
+            }
+            catch (Exception)
+            { // Token caduco, redirecciona al Login.
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         private void RellenarDropdownCapacidad()
@@ -52,7 +59,7 @@ namespace AppReservasSW.Views
         private async void RellenarDropdownHotelRelacionado()
         {
             DropDownList_HotelRelacion.Items.Clear();
-            
+
             // Trae la lista de hoteles disponibles de la base de datos.
             IEnumerable<Models.Hotel> iEnumerable_hoteles = new ObservableCollection<Models.Hotel>();
             HotelManager hotelManager = new HotelManager();

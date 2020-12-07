@@ -1,27 +1,12 @@
-﻿<%@  Page Async="true" Title="" Language="C#" MasterPageFile="../Site.Master" AutoEventWireup="true" CodeBehind="Hotel.aspx.cs" Inherits="AppReservasSW.Views.Hotel" %>
+﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="../MasterPage.Master" AutoEventWireup="true" CodeBehind="Hotel.aspx.cs" Inherits="AppReservasSW.Views.Hotel" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .auto-style1 {
-            width: 85px;
-        }
-        .auto-style2 {
-            width: 85px;
-            height: 22px;
-        }
-        .auto-style3 {
-            height: 22px;
-        }
-        .auto-style4 {
-            width: 279px;
-        }
-        .auto-style5 {
-            height: 22px;
-            width: 279px;
-        }
-    </style>
+    <link rel="stylesheet" href="../Public/general-style.css">
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-      <asp:GridView ID="grdHoteles" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+
+    <asp:GridView CssClass="content_table" ID="grdHoteles" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <FooterStyle BackColor="#CCCCCC" />
         <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -32,58 +17,59 @@
         <SortedDescendingCellStyle BackColor="#CAC9C9" />
         <SortedDescendingHeaderStyle BackColor="#383838" />
     </asp:GridView>
-    <table style="width:100%;">
+
+    <table class="form_table">
         <tr>
-            <td class="modal-sm" style="width: 190px">
+            <td class="modal-sm">
                 <asp:Label ID="Label1" runat="server" Text="Codigo"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtCodigo" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtCodigo" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px">
+            <td class="modal-sm">
                 <asp:Label ID="Label2" runat="server" Text="Nombre"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtNombre" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtNombre" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px">
+            <td class="modal-sm">
                 <asp:Label ID="Label3" runat="server" Text="Telefono"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtTelefono" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtTelefono" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px">
+            <td class="modal-sm">
                 <asp:Label ID="Label4" runat="server" Text="Email"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px">
+            <td class="modal-sm">
                 <asp:Label ID="Label5" runat="server" Text="Direccion"></asp:Label>
             </td>
             <td>
-                <asp:TextBox ID="txtDireccion" runat="server"></asp:TextBox>
+                <asp:TextBox CssClass="form-control" ID="txtDireccion" runat="server"></asp:TextBox>
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px">
+            <td class="modal-sm">
                 <asp:Label ID="Label6" runat="server" Text="Categoria"></asp:Label>
             </td>
             <td>
-                <asp:DropDownList ID="drpCategoria" runat="server">
+                <asp:DropDownList CssClass="form-control" ID="drpCategoria" runat="server">
                     <asp:ListItem Selected="True" Value="5">5 Estrellas</asp:ListItem>
                     <asp:ListItem Value="4">4 Estrellas</asp:ListItem>
                     <asp:ListItem Value="3">3 Estrellas</asp:ListItem>
@@ -94,29 +80,29 @@
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px">&nbsp;</td>
+            <td class="modal-sm">&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>
         <tr>
             <td class="modal-sm" style="width: 190px">
-                <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnIngresar_Click"  />
-                <asp:Button ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
+                <asp:Button CssClass="btn btn-light" ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnIngresar_Click" />
+                <asp:Button CssClass="btn btn-light" ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
             </td>
             <td>
-                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
+                <asp:Button CssClass="btn btn-danger" ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
             </td>
             <td>&nbsp;</td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px; height: 21px;">
+            <td class="modal-sm">
                 <asp:Label ID="lblStatus" runat="server" Text="Label" ForeColor="#006600" Visible="False"></asp:Label>
             </td>
             <td style="height: 21px"></td>
             <td style="height: 21px"></td>
         </tr>
         <tr>
-            <td class="modal-sm" style="width: 190px">&nbsp;</td>
+            <td class="modal-sm">&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
         </tr>

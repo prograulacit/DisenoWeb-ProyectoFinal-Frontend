@@ -1,0 +1,11 @@
+﻿/* Tabla de registros que se muestra en cada página */
+.content_table {
+    margin-top: 40px;
+    margin-bottom: 35px;
+    margin-left: 20px;
+}
+
+/* Tabla donde ingresamos información en cajas de texto y varios */
+.form_table{
+    margin-left:30px;
+}

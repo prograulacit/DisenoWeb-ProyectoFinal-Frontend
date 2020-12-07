@@ -166,8 +166,10 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Externo.Master" />
+    <Content Include="MasterPage.Master" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Login.aspx" />
+    <Content Include="Public\general-style.css" />
     <Content Include="Register.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -200,9 +202,19 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Site.Master" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Views\Autos.aspx" />
+    <Content Include="Views\Cliente.aspx" />
+    <Content Include="Views\Combustible.aspx" />
+    <Content Include="Views\Empleado.aspx" />
+    <Content Include="Views\Gerente.aspx" />
     <Content Include="Views\Habitacion.aspx" />
     <Content Include="Views\Hotel.aspx" />
+    <Content Include="Views\Marca.aspx" />
+    <Content Include="Views\Modelo.aspx" />
+    <Content Include="Views\Proveedores.aspx" />
+    <Content Include="Views\Renta.aspx" />
     <Content Include="Views\Reserva.aspx" />
+    <Content Include="Views\Sucursal.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
     <Content Include="Site.Mobile.Master" />
@@ -225,9 +237,19 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AutosManager.cs" />
+    <Compile Include="Controllers\ClienteManager.cs" />
+    <Compile Include="Controllers\CombustibleManager.cs" />
+    <Compile Include="Controllers\EmpleadoManager.cs" />
+    <Compile Include="Controllers\GerenteManager.cs" />
     <Compile Include="Controllers\HabitacionManager.cs" />
     <Compile Include="Controllers\HotelManager.cs" />
+    <Compile Include="Controllers\MarcaManager.cs" />
+    <Compile Include="Controllers\ModeloManager.cs" />
+    <Compile Include="Controllers\ProveedoresManager.cs" />
+    <Compile Include="Controllers\RentaManager.cs" />
     <Compile Include="Controllers\ReservaManager.cs" />
+    <Compile Include="Controllers\SucursalManager.cs" />
     <Compile Include="Controllers\UsuarioManager.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -253,10 +275,27 @@
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Autos.cs" />
+    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Combustible.cs" />
+    <Compile Include="Models\Empleado.cs" />
+    <Compile Include="Models\Gerente.cs" />
     <Compile Include="Models\Habitacion.cs" />
     <Compile Include="Models\Hotel.cs" />
     <Compile Include="Models\LoginRequest.cs" />
+    <Compile Include="Models\Marca.cs" />
+    <Compile Include="Models\Modelo.cs" />
+    <Compile Include="Models\Proveedores.cs" />
+    <Compile Include="Models\Renta.cs" />
     <Compile Include="Models\Reserva.cs" />
+    <Compile Include="Models\Sucursal.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Register.aspx.cs">
@@ -288,6 +327,41 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Autos.aspx.cs">
+      <DependentUpon>Autos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Autos.aspx.designer.cs">
+      <DependentUpon>Autos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cliente.aspx.cs">
+      <DependentUpon>Cliente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Cliente.aspx.designer.cs">
+      <DependentUpon>Cliente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Combustible.aspx.cs">
+      <DependentUpon>Combustible.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Combustible.aspx.designer.cs">
+      <DependentUpon>Combustible.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Empleado.aspx.cs">
+      <DependentUpon>Empleado.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Empleado.aspx.designer.cs">
+      <DependentUpon>Empleado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Gerente.aspx.cs">
+      <DependentUpon>Gerente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Gerente.aspx.designer.cs">
+      <DependentUpon>Gerente.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Habitacion.aspx.cs">
       <DependentUpon>Habitacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -302,12 +376,47 @@
     <Compile Include="Views\Hotel.aspx.designer.cs">
       <DependentUpon>Hotel.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Views\Marca.aspx.cs">
+      <DependentUpon>Marca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Marca.aspx.designer.cs">
+      <DependentUpon>Marca.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Modelo.aspx.cs">
+      <DependentUpon>Modelo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Modelo.aspx.designer.cs">
+      <DependentUpon>Modelo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Proveedores.aspx.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Proveedores.aspx.designer.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Renta.aspx.cs">
+      <DependentUpon>Renta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Renta.aspx.designer.cs">
+      <DependentUpon>Renta.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Views\Reserva.aspx.cs">
       <DependentUpon>Reserva.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Views\Reserva.aspx.designer.cs">
       <DependentUpon>Reserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Sucursal.aspx.cs">
+      <DependentUpon>Sucursal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Sucursal.aspx.designer.cs">
+      <DependentUpon>Sucursal.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

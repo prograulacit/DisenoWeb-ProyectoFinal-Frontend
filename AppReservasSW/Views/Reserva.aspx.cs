@@ -51,9 +51,16 @@ namespace AppReservasSW.Views
 
         private async void InicializarControles()
         {
-            reservas = await reservaManager.ObtenerReservas(VG.usuarioActual.CadenaToken);
-            grdReservas.DataSource = reservas.ToList();
-            grdReservas.DataBind();
+            try
+            {
+                reservas = await reservaManager.ObtenerReservas(VG.usuarioActual.CadenaToken);
+                grdReservas.DataSource = reservas.ToList();
+                grdReservas.DataBind();
+            }
+            catch (Exception)
+            {
+                Response.Redirect("~/Login.aspx");
+            }
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using AppReservasSW.Models;
 using AppReservasSW.Controllers;
 using System.Collections.ObjectModel;
 using System.Drawing;
@@ -17,8 +14,6 @@ namespace AppReservasSW.Views
         IEnumerable<Models.Hotel> hoteles = new ObservableCollection<Models.Hotel>();
         HotelManager hotelManager = new HotelManager();
 
-
-
         protected void Page_Load(object sender, EventArgs e)
         {
             InicializarControles();
@@ -26,13 +21,17 @@ namespace AppReservasSW.Views
 
         private async void InicializarControles()
         {
-
-            hoteles = await hotelManager.ObtenerHoteles(VG.usuarioActual.CadenaToken);
-            grdHoteles.DataSource = hoteles.ToList();
-            grdHoteles.DataBind();
+            try
+            {
+                hoteles = await hotelManager.ObtenerHoteles(VG.usuarioActual.CadenaToken);
+                grdHoteles.DataSource = hoteles.ToList();
+                grdHoteles.DataBind();
+            }
+            catch (Exception)
+            { // Token caduco, redirecciona al Login.
+                Response.Redirect("~/Login.aspx");
+            }
         }
-
-
 
         async protected void btnIngresar_Click(object sender, EventArgs e)
         {
@@ -65,7 +64,6 @@ namespace AppReservasSW.Views
                 }
             }
         }
-
 
         async protected void btnModificar_Click(object sender, EventArgs e)
         {
@@ -138,7 +136,6 @@ namespace AppReservasSW.Views
 
         }
 
-
         private bool ValidarInsertar()
         {
 
@@ -176,7 +173,6 @@ namespace AppReservasSW.Views
 
             return true;
         }
-
 
         private bool ValidarModificar()
         {

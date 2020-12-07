@@ -11,89 +11,80 @@ namespace AppReservasSW.Views
 {
 
 
-    public partial class Reserva
+    public partial class Autos
     {
 
         /// <summary>
-        /// grdReservas control.
+        /// gridView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView grdReservas;
+        protected global::System.Web.UI.WebControls.GridView gridView;
 
         /// <summary>
-        /// Label2 control.
+        /// TextBox_codigo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_codigo;
 
         /// <summary>
-        /// Textbox_CodigoReserva control.
+        /// DropDownList_marca control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Textbox_CodigoReserva;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_marca;
 
         /// <summary>
-        /// Label1 control.
+        /// DropDownList_modelo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_modelo;
 
         /// <summary>
-        /// DropDownList_CodigoHabitacion control.
+        /// DropDownList_combustible control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList_CodigoHabitacion;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_combustible;
 
         /// <summary>
-        /// Label3 control.
+        /// DropDownList_sucursal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList_sucursal;
 
         /// <summary>
-        /// Label4 control.
+        /// TextBox_cantidad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_cantidad;
 
         /// <summary>
-        /// Calendar_FechaEntrada control.
+        /// TextBox_precio control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar_FechaEntrada;
-
-        /// <summary>
-        /// Calendar_FechaSalida control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar_FechaSalida;
+        protected global::System.Web.UI.WebControls.TextBox TextBox_precio;
 
         /// <summary>
         /// btnAgregar control.
@@ -123,12 +114,12 @@ namespace AppReservasSW.Views
         protected global::System.Web.UI.WebControls.Button btnEliminar;
 
         /// <summary>
-        /// lblStatus control.
+        /// Label_status control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatus;
+        protected global::System.Web.UI.WebControls.Label Label_status;
     }
 }
