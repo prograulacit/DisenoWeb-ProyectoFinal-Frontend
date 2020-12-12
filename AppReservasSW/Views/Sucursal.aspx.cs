@@ -156,7 +156,7 @@ namespace AppReservasSW.Views
         protected async void btnEliminar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(TextBox_codigo.Text) &&
-                Int32.TryParse(TextBox_codigo.Text, out int num))
+                VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 string codigoEliminado = string.Empty;
                 string codigoElemento = string.Empty;
@@ -186,24 +186,23 @@ namespace AppReservasSW.Views
         {
             if (TextBox_nombre.Text.IsNullOrWhiteSpace())
             {
-                MensajeEstado("Debe ingresar el nombre del modelo a guardar", true, true);
+                MensajeEstado("Debe ingresar el nombre de la sucursal a guardar", true, true);
                 return false;
             }
 
             if (TextBox_direccion.Text.IsNullOrWhiteSpace())
             {
-                MensajeEstado("Debe ingresar la dirección del gerente a guardar", true, true);
+                MensajeEstado("Debe ingresar la dirección de la sucursal a guardar", true, true);
                 return false;
             }
 
             if (TextBox_telefono.Text.IsNullOrWhiteSpace())
             {
-                MensajeEstado("Debe ingresar el teléfono del gerente a guardar", true, true);
+                MensajeEstado("Debe ingresar el teléfono de la sucursal a guardar", true, true);
                 return false;
             }
 
-
-            if (Int32.TryParse(TextBox_telefono.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_telefono.Text))
             {
                 MensajeEstado("Debe ingresar el teléfono valido", true, true);
                 return false;
@@ -228,23 +227,23 @@ namespace AppReservasSW.Views
         {
             if (TextBox_nombre.Text.IsNullOrWhiteSpace())
             {
-                MensajeEstado("Debe ingresar el nombre del modelo a guardar", true, true);
+                MensajeEstado("Debe ingresar el nombre de la sucurcal a modificar", true, true);
                 return false;
             }
 
             if (TextBox_direccion.Text.IsNullOrWhiteSpace())
             {
-                MensajeEstado("Debe ingresar la dirección del gerente a guardar", true, true);
+                MensajeEstado("Debe ingresar la dirección de la sucursal a modificar", true, true);
                 return false;
             }
 
             if (TextBox_telefono.Text.IsNullOrWhiteSpace())
             {
-                MensajeEstado("Debe ingresar el teléfono del gerente a guardar", true, true);
+                MensajeEstado("Debe ingresar el teléfono de la sucursal a guardar", true, true);
                 return false;
             }
 
-            if (Int32.TryParse(TextBox_telefono.Text,out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_telefono.Text))
             {
                 MensajeEstado("Debe ingresar el teléfono valido", true, true);
                 return false;
@@ -262,7 +261,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_codigo.Text, out int num1))
+            if (!VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 MensajeEstado("Debe ingresar un código valido", true, true);
                 return false;

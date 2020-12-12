@@ -100,7 +100,8 @@ namespace AppReservasSW.Views
 
         async protected void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtCodigo.Text))
+            if (!string.IsNullOrEmpty(txtCodigo.Text) &&
+                VG.CadenaSoloNumeros(txtCodigo.Text))
             {
                 string codigoHotelEliminado = string.Empty;
                 string codigoHotel = string.Empty;
@@ -125,7 +126,7 @@ namespace AppReservasSW.Views
             }
             else
             {
-                lblStatus.Text = "Debe ingresar el codigo";
+                lblStatus.Text = "Debe ingresar el código del hotel";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
             }
@@ -171,6 +172,14 @@ namespace AppReservasSW.Views
                 return false;
             }
 
+            if (!VG.CadenaSoloNumeros(txtTelefono.Text))
+            {
+                lblStatus.Text = "Debe ingresar un telefono valido";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+
             return true;
         }
 
@@ -211,6 +220,22 @@ namespace AppReservasSW.Views
             if (txtTelefono.Text.IsNullOrWhiteSpace())
             {
                 lblStatus.Text = "Debe ingresar el telefono del hotel";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+
+            if (!VG.CadenaSoloNumeros(txtTelefono.Text))
+            {
+                lblStatus.Text = "Debe ingresar un telefono valido";
+                lblStatus.ForeColor = Color.Maroon;
+                lblStatus.Visible = true;
+                return false;
+            }
+
+            if (!VG.CadenaSoloNumeros(txtCodigo.Text))
+            {
+                lblStatus.Text = "Debe ingresar un código valido";
                 lblStatus.ForeColor = Color.Maroon;
                 lblStatus.Visible = true;
                 return false;

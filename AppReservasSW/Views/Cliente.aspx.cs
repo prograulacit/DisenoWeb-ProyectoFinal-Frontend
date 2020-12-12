@@ -58,7 +58,7 @@ namespace AppReservasSW.Views
                 }
                 else
                 {
-                    MensajeEstado("Ha habido un error al registrar el cliente", true, true);
+                    MensajeEstado("Ha ocurrido un error (No puede registrar otro cliente con el mismo número de intentificación.)", true, true);
                 }
             }
         }
@@ -159,7 +159,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (Int32.TryParse(TextBox_telefono.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_telefono.Text))
             {
                 MensajeEstado("Debe ingresar el teléfono valido", true, true);
                 return false;
@@ -206,13 +206,13 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (Int32.TryParse(TextBox_telefono.Text, out int num1))
+            if (!VG.CadenaSoloNumeros(TextBox_telefono.Text))
             {
                 MensajeEstado("Debe ingresar el teléfono valido", true, true);
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_identificacion.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_identificacion.Text))
             {
                 MensajeEstado("Debe ingresar un código valido", true, true);
                 return false;

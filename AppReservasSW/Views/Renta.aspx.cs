@@ -98,30 +98,39 @@ namespace AppReservasSW.Views
         {
             if (ValidarInsertar())
             {
-                Models.Renta rentaAgregada = new Models.Renta();
-                Models.Renta renta = new Models.Renta()
+                try
                 {
-                    USU_IDENTIFICACION = VG.usuarioActual.USU_IDENTIFICACION,
-                    AUTO_CODIGO = Int32.Parse(DropDownList_auto.SelectedValue.ToString()),
-                    EMP_CODIGO = Int32.Parse(DropDownList_empleado.SelectedValue.ToString()),
-                    REN_DESCRIPCION = TextBox_descripcion.Text,
-                    REN_CANTIDAD = Int32.Parse(TextBox_cantidadRenta.Text),
-                    REN_PRECIO = Int32.Parse(TextBox_precio.Text),
-                    REN_FEC_RETIRO = Calendar_FechaRetiro.SelectedDate,
-                    REN_FEC_RETORNO = Calendar_FechaRetorno.SelectedDate
-                };
+                    Models.Renta rentaAgregada = new Models.Renta();
+                    Models.Renta renta = new Models.Renta()
+                    {
+                        USU_IDENTIFICACION = VG.usuarioActual.USU_IDENTIFICACION,
+                        AUTO_CODIGO = Int32.Parse(DropDownList_auto.SelectedValue.ToString()),
+                        EMP_CODIGO = Int32.Parse(DropDownList_empleado.SelectedValue.ToString()),
+                        REN_DESCRIPCION = TextBox_descripcion.Text,
+                        REN_CANTIDAD = Int32.Parse(TextBox_cantidadRenta.Text),
+                        REN_PRECIO = Int32.Parse(TextBox_precio.Text),
+                        REN_FEC_RETIRO = Calendar_FechaRetiro.SelectedDate,
+                        REN_FEC_RETORNO = Calendar_FechaRetorno.SelectedDate
+                    };
 
-                rentaAgregada =
-                    await rentaManager.Ingresar(renta, VG.usuarioActual.CadenaToken);
+                    rentaAgregada =
+                        await rentaManager.Ingresar(renta, VG.usuarioActual.CadenaToken);
 
-                if (rentaAgregada != null)
-                {
-                    MensajeEstado("Registro guardado con exito", false, true);
-                    InicializarControles();
+                    if (rentaAgregada != null)
+                    {
+                        MensajeEstado("Registro guardado con exito", false, true);
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        MensajeEstado("Ha habido un error al guardar el registro", true, true);
+                    }
+
+
                 }
-                else
+                catch (OverflowException)
                 {
-                    MensajeEstado("Ha habido un error al guardar el registro", true, true);
+                    MensajeEstado("No puede establecer un precio o cantidad excesiva", true, true);
                 }
             }
         }
@@ -130,31 +139,38 @@ namespace AppReservasSW.Views
         {
             if (ValidarModificar())
             {
-                Models.Renta rentaModificada = new Models.Renta();
-                Models.Renta renta = new Models.Renta()
+                try
                 {
-                    REN_CODIGO = Int32.Parse(TextBox_codigo.Text),
-                    USU_IDENTIFICACION = VG.usuarioActual.USU_IDENTIFICACION,
-                    AUTO_CODIGO = Int32.Parse(DropDownList_auto.SelectedValue.ToString()),
-                    EMP_CODIGO = Int32.Parse(DropDownList_empleado.SelectedValue.ToString()),
-                    REN_DESCRIPCION = TextBox_descripcion.Text,
-                    REN_CANTIDAD = Int32.Parse(TextBox_cantidadRenta.Text),
-                    REN_PRECIO = Int32.Parse(TextBox_precio.Text),
-                    REN_FEC_RETIRO = Calendar_FechaRetiro.SelectedDate,
-                    REN_FEC_RETORNO = Calendar_FechaRetorno.SelectedDate
-                };
+                    Models.Renta rentaModificada = new Models.Renta();
+                    Models.Renta renta = new Models.Renta()
+                    {
+                        REN_CODIGO = Int32.Parse(TextBox_codigo.Text),
+                        USU_IDENTIFICACION = VG.usuarioActual.USU_IDENTIFICACION,
+                        AUTO_CODIGO = Int32.Parse(DropDownList_auto.SelectedValue.ToString()),
+                        EMP_CODIGO = Int32.Parse(DropDownList_empleado.SelectedValue.ToString()),
+                        REN_DESCRIPCION = TextBox_descripcion.Text,
+                        REN_CANTIDAD = Int32.Parse(TextBox_cantidadRenta.Text),
+                        REN_PRECIO = Int32.Parse(TextBox_precio.Text),
+                        REN_FEC_RETIRO = Calendar_FechaRetiro.SelectedDate,
+                        REN_FEC_RETORNO = Calendar_FechaRetorno.SelectedDate
+                    };
 
-                rentaModificada =
-                    await rentaManager.Actualizar(renta, VG.usuarioActual.CadenaToken);
+                    rentaModificada =
+                        await rentaManager.Actualizar(renta, VG.usuarioActual.CadenaToken);
 
-                if (rentaModificada != null)
-                {
-                    MensajeEstado("Registro modificado con exito", false, true);
-                    InicializarControles();
+                    if (rentaModificada != null)
+                    {
+                        MensajeEstado("Registro modificado con exito", false, true);
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        MensajeEstado("Hubo un error al intentar modificar el registro", true, true);
+                    }
                 }
-                else
+                catch (OverflowException)
                 {
-                    MensajeEstado("Hubo un error al intentar modificar el registro", true, true);
+                    MensajeEstado("No puede establecer un precio o cantidad excesiva", true, true);
                 }
             }
         }
@@ -162,7 +178,7 @@ namespace AppReservasSW.Views
         protected async void btnEliminar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(TextBox_codigo.Text) &&
-                Int32.TryParse(TextBox_codigo.Text, out int num))
+                VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 string codigoEliminado = string.Empty;
                 string codigoElemento = string.Empty;
@@ -214,7 +230,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_cantidadRenta.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_cantidadRenta.Text))
             {
                 MensajeEstado("Debe introducir una cantidad de renta valida", true, true);
                 return false;
@@ -226,7 +242,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_precio.Text, out int num1))
+            if (!VG.CadenaSoloNumeros(TextBox_precio.Text))
             {
                 MensajeEstado("Debe introducir la cantidad del precio de forma valida", true, true);
                 return false;
@@ -279,7 +295,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_cantidadRenta.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_cantidadRenta.Text))
             {
                 MensajeEstado("Debe introducir una cantidad de renta valida", true, true);
                 return false;
@@ -291,7 +307,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_precio.Text, out int num1))
+            if (!VG.CadenaSoloNumeros(TextBox_precio.Text))
             {
                 MensajeEstado("Debe introducir la cantidad del precio de forma valida", true, true);
                 return false;
@@ -309,7 +325,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_codigo.Text, out int num2))
+            if (!VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 MensajeEstado("Debe ingresar un código valido", true, true);
                 return false;
@@ -328,7 +344,7 @@ namespace AppReservasSW.Views
             {
                 return true;
             }
-            MensajeEstado("No puede hacer una renta con fecha antes de "
+            MensajeEstado("No puede establecer una fecha antes de "
                 + ObtenerFechaActual().ToString(), true, true);
             return false;
         }

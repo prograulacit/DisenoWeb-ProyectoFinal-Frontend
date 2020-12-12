@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+
 using AppReservasSW.Controllers;
 using AppReservasSW.Models;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,21 +14,37 @@ namespace AppReservasSW
         }
         async protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            UsuarioManager usuarioManager = new UsuarioManager();
-            Usuario usuario = await usuarioManager.Validar(Identificacion.Text, Password.Text);
-            JwtSecurityToken securityToken;
-            if(!string.IsNullOrEmpty(usuario.CadenaToken))
+            try
             {
-                var jwtHandler = new JwtSecurityTokenHandler();
-                securityToken = jwtHandler.ReadJwtToken(usuario.CadenaToken);
-                FormsAuthentication.RedirectFromLoginPage(
-                    Identificacion.Text, true);
+                UsuarioManager usuarioManager = new UsuarioManager();
+                Usuario usuario = await usuarioManager.Validar(Identificacion.Text, Password.Text);
+                JwtSecurityToken securityToken;
+                if (usuario != null)
+                {
+                    if (!string.IsNullOrEmpty(usuario.CadenaToken))
+                    {
+                        var jwtHandler = new JwtSecurityTokenHandler();
+                        securityToken = jwtHandler.ReadJwtToken(usuario.CadenaToken);
+                        FormsAuthentication.RedirectFromLoginPage(
+                            Identificacion.Text, true);
 
-                VG.usuarioActual = usuario;
+                        VG.usuarioActual = usuario;
+                    }
+                    else
+                    {
+                        FailureText.Text = "Credenciales inválidas";
+                        FailureText.Visible = true;
+                    }
+                }
+                else
+                {
+                    FailureText.Text = "El usuario no existe";
+                    FailureText.Visible = true;
+                }
             }
-            else
+            catch (Exception)
             {
-                FailureText.Text = "Credenciales inválidas";
+                FailureText.Text = "El usuario no existe";
                 FailureText.Visible = true;
             }
         }

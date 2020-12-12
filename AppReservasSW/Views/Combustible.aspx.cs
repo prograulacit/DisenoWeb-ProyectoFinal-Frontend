@@ -131,7 +131,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_codigo.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 MensajeEstado("Debe ingresar un código valido", true, true);
                 return false;

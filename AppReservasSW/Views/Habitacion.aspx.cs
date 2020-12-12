@@ -86,30 +86,39 @@ namespace AppReservasSW.Views
         {
             if (ValidarInsertar())
             {
-                Models.Habitacion habitacionIngresada = new Models.Habitacion();
-                Models.Habitacion habitacion = new Models.Habitacion()
+                try
                 {
-                    HOT_CODIGO = Int32.Parse(DropDownList_HotelRelacion.SelectedValue.ToString()),
-                    HAB_NUMERO = Int32.Parse(TextBox_NumeroHabitacion.Text),
-                    HAB_CAPACIDAD = Int32.Parse(DropDownList_capacidad.SelectedValue.ToString()),
-                    HAB_TIPO = TextBox_TipoHabitacion.Text,
-                    HAB_DESCRIPCION = TextBox_descripcion.Text,
-                    HAB_ESTADO = TextBox_Estado.Text,
-                    HAB_PRECIO = Int32.Parse(TextBox_precio.Text),
-                };
+                    Models.Habitacion habitacionIngresada = new Models.Habitacion();
+                    Models.Habitacion habitacion = new Models.Habitacion()
+                    {
+                        HOT_CODIGO = Int32.Parse(DropDownList_HotelRelacion.SelectedValue.ToString()),
+                        HAB_NUMERO = Int32.Parse(TextBox_NumeroHabitacion.Text),
+                        HAB_CAPACIDAD = Int32.Parse(DropDownList_capacidad.SelectedValue.ToString()),
+                        HAB_TIPO = TextBox_TipoHabitacion.Text,
+                        HAB_DESCRIPCION = TextBox_descripcion.Text,
+                        HAB_ESTADO = TextBox_Estado.Text,
+                        HAB_PRECIO = Int32.Parse(TextBox_precio.Text),
+                    };
 
-                habitacionIngresada =
-                    await habitacionManager.Ingresar(habitacion, VG.usuarioActual.CadenaToken);
+                    habitacionIngresada =
+                        await habitacionManager.Ingresar(habitacion, VG.usuarioActual.CadenaToken);
 
-                if (habitacionIngresada != null)
-                {
-                    lblStatus.Text = "Habitación registrada correctamente";
-                    lblStatus.Visible = true;
-                    InicializarControles();
+                    if (habitacionIngresada != null)
+                    {
+                        lblStatus.Text = "Habitación registrada correctamente";
+                        lblStatus.Visible = true;
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        lblStatus.Text = "Hubo un error al ingresar la habitación";
+                        lblStatus.ForeColor = Color.Maroon;
+                        lblStatus.Visible = true;
+                    }
                 }
-                else
+                catch (OverflowException)
                 {
-                    lblStatus.Text = "Hubo un error al ingresar la habitación";
+                    lblStatus.Text = "No puede ingresar precios o números de habitación excesivos.";
                     lblStatus.ForeColor = Color.Maroon;
                     lblStatus.Visible = true;
                 }
@@ -120,31 +129,40 @@ namespace AppReservasSW.Views
         {
             if (ValidarModificar())
             {
-                Models.Habitacion habitacionModificada = new Models.Habitacion();
-                Models.Habitacion habitacion = new Models.Habitacion()
+                try
                 {
-                    HAB_CODIGO = Int32.Parse(txtCodigo.Text),
-                    HOT_CODIGO = Int32.Parse(DropDownList_HotelRelacion.SelectedValue.ToString()),
-                    HAB_NUMERO = Int32.Parse(TextBox_NumeroHabitacion.Text),
-                    HAB_CAPACIDAD = Int32.Parse(DropDownList_capacidad.SelectedValue),
-                    HAB_TIPO = TextBox_TipoHabitacion.Text,
-                    HAB_DESCRIPCION = TextBox_descripcion.Text,
-                    HAB_ESTADO = TextBox_Estado.Text,
-                    HAB_PRECIO = Int32.Parse(TextBox_precio.Text),
-                };
+                    Models.Habitacion habitacionModificada = new Models.Habitacion();
+                    Models.Habitacion habitacion = new Models.Habitacion()
+                    {
+                        HAB_CODIGO = Int32.Parse(txtCodigo.Text),
+                        HOT_CODIGO = Int32.Parse(DropDownList_HotelRelacion.SelectedValue.ToString()),
+                        HAB_NUMERO = Int32.Parse(TextBox_NumeroHabitacion.Text),
+                        HAB_CAPACIDAD = Int32.Parse(DropDownList_capacidad.SelectedValue),
+                        HAB_TIPO = TextBox_TipoHabitacion.Text,
+                        HAB_DESCRIPCION = TextBox_descripcion.Text,
+                        HAB_ESTADO = TextBox_Estado.Text,
+                        HAB_PRECIO = Int32.Parse(TextBox_precio.Text),
+                    };
 
-                habitacionModificada =
-                    await habitacionManager.Actualizar(habitacion, VG.usuarioActual.CadenaToken);
+                    habitacionModificada =
+                        await habitacionManager.Actualizar(habitacion, VG.usuarioActual.CadenaToken);
 
-                if (habitacionModificada != null)
-                {
-                    lblStatus.Text = "Habitación modificada correctamente";
-                    lblStatus.Visible = true;
-                    InicializarControles();
+                    if (habitacionModificada != null)
+                    {
+                        lblStatus.Text = "Habitación modificada correctamente";
+                        lblStatus.Visible = true;
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        lblStatus.Text = "Hubo un error al modificar la habitación";
+                        lblStatus.ForeColor = Color.Maroon;
+                        lblStatus.Visible = true;
+                    }
                 }
-                else
+                catch (OverflowException)
                 {
-                    lblStatus.Text = "Hubo un error al modificar la habitación";
+                    lblStatus.Text = "No puede establecer un precio excesivo";
                     lblStatus.ForeColor = Color.Maroon;
                     lblStatus.Visible = true;
                 }

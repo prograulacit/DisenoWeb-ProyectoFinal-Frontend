@@ -152,28 +152,35 @@ namespace AppReservasSW.Views
         {
             if (ValidarInsertar())
             {
-                Models.Autos autoAgregado = new Models.Autos();
-                Models.Autos auto = new Models.Autos()
+                try
                 {
-                    MAR_CODIGO = Int32.Parse(DropDownList_marca.SelectedValue.ToString()),
-                    MOD_CODIGO = Int32.Parse(DropDownList_modelo.SelectedValue.ToString()),
-                    COMB_CODIGO = Int32.Parse(DropDownList_combustible.SelectedValue.ToString()),
-                    SUC_CODIGO = Int32.Parse(DropDownList_sucursal.SelectedValue.ToString()),
-                    AUTO_CANTIDAD = TextBox_cantidad.Text,
-                    AUTO_PRECIO = Int32.Parse(TextBox_precio.Text)
-                };
+                    Models.Autos autoAgregado = new Models.Autos();
+                    Models.Autos auto = new Models.Autos()
+                    {
+                        MAR_CODIGO = Int32.Parse(DropDownList_marca.SelectedValue.ToString()),
+                        MOD_CODIGO = Int32.Parse(DropDownList_modelo.SelectedValue.ToString()),
+                        COMB_CODIGO = Int32.Parse(DropDownList_combustible.SelectedValue.ToString()),
+                        SUC_CODIGO = Int32.Parse(DropDownList_sucursal.SelectedValue.ToString()),
+                        AUTO_CANTIDAD = TextBox_cantidad.Text,
+                        AUTO_PRECIO = Int32.Parse(TextBox_precio.Text)
+                    };
 
-                autoAgregado =
-                    await autosManager.Ingresar(auto, VG.usuarioActual.CadenaToken);
+                    autoAgregado =
+                        await autosManager.Ingresar(auto, VG.usuarioActual.CadenaToken);
 
-                if (autoAgregado != null)
-                {
-                    MensajeEstado("Registro guardado con exito", false, true);
-                    InicializarControles();
+                    if (autoAgregado != null)
+                    {
+                        MensajeEstado("Registro guardado con exito", false, true);
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        MensajeEstado("Ha habido un error al guardar el registro", true, true);
+                    }
                 }
-                else
+                catch (OverflowException)
                 {
-                    MensajeEstado("Ha habido un error al guardar el registro", true, true);
+                    MensajeEstado("No puede establecer un precio excesivo", true, true);
                 }
             }
         }
@@ -182,29 +189,36 @@ namespace AppReservasSW.Views
         {
             if (ValidarModificar())
             {
-                Models.Autos autoModificado = new Models.Autos();
-                Models.Autos auto = new Models.Autos()
+                try
                 {
-                    AUTO_CODIGO = Int32.Parse(TextBox_codigo.Text),
-                    MAR_CODIGO = Int32.Parse(DropDownList_marca.SelectedValue.ToString()),
-                    MOD_CODIGO = Int32.Parse(DropDownList_modelo.SelectedValue.ToString()),
-                    COMB_CODIGO = Int32.Parse(DropDownList_combustible.SelectedValue.ToString()),
-                    SUC_CODIGO = Int32.Parse(DropDownList_sucursal.SelectedValue.ToString()),
-                    AUTO_CANTIDAD = TextBox_cantidad.Text,
-                    AUTO_PRECIO = Int32.Parse(TextBox_precio.Text)
-                };
+                    Models.Autos autoModificado = new Models.Autos();
+                    Models.Autos auto = new Models.Autos()
+                    {
+                        AUTO_CODIGO = Int32.Parse(TextBox_codigo.Text),
+                        MAR_CODIGO = Int32.Parse(DropDownList_marca.SelectedValue.ToString()),
+                        MOD_CODIGO = Int32.Parse(DropDownList_modelo.SelectedValue.ToString()),
+                        COMB_CODIGO = Int32.Parse(DropDownList_combustible.SelectedValue.ToString()),
+                        SUC_CODIGO = Int32.Parse(DropDownList_sucursal.SelectedValue.ToString()),
+                        AUTO_CANTIDAD = TextBox_cantidad.Text,
+                        AUTO_PRECIO = Int32.Parse(TextBox_precio.Text)
+                    };
 
-                autoModificado =
-                    await autosManager.Actualizar(auto, VG.usuarioActual.CadenaToken);
+                    autoModificado =
+                        await autosManager.Actualizar(auto, VG.usuarioActual.CadenaToken);
 
-                if (autoModificado != null)
-                {
-                    MensajeEstado("Registro modificado con exito", false, true);
-                    InicializarControles();
+                    if (autoModificado != null)
+                    {
+                        MensajeEstado("Registro modificado con exito", false, true);
+                        InicializarControles();
+                    }
+                    else
+                    {
+                        MensajeEstado("Hubo un error al intentar modificar el registro", true, true);
+                    }
                 }
-                else
+                catch (OverflowException)
                 {
-                    MensajeEstado("Hubo un error al intentar modificar el registro", true, true);
+                    MensajeEstado("No puede establecer un precio excesivo", true, true);
                 }
             }
         }
@@ -212,7 +226,7 @@ namespace AppReservasSW.Views
         protected async void btnEliminar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(TextBox_codigo.Text) &&
-                Int32.TryParse(TextBox_codigo.Text, out int num))
+                VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 string codigoEliminado = string.Empty;
                 string codigoElemento = string.Empty;
@@ -270,7 +284,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_cantidad.Text, out int num1))
+            if (!VG.CadenaSoloNumeros(TextBox_cantidad.Text))
             {
                 MensajeEstado("Debe introducir una cantidad de autos valida", true, true);
                 return false;
@@ -282,7 +296,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_precio.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_precio.Text))
             {
                 MensajeEstado("Debe introducir un precio valido", true, true);
                 return false;
@@ -323,7 +337,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_cantidad.Text, out int num1))
+            if (!VG.CadenaSoloNumeros(TextBox_cantidad.Text))
             {
                 MensajeEstado("Debe introducir una cantidad de autos valida", true, true);
                 return false;
@@ -335,13 +349,13 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_precio.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_precio.Text))
             {
                 MensajeEstado("Debe introducir un precio valido", true, true);
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_codigo.Text, out int num2))
+            if (!VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 MensajeEstado("Debe ingresar un código valido", true, true);
                 return false;

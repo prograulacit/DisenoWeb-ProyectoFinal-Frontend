@@ -89,7 +89,7 @@ namespace AppReservasSW.Views
         protected async void btnEliminar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(TextBox_codigo.Text) &&
-                Int32.TryParse(TextBox_codigo.Text, out int num))
+                VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 string codigoEliminado = string.Empty;
                 string codigoElemento = string.Empty;
@@ -146,7 +146,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_codigo.Text, out int num))
+            if (!VG.CadenaSoloNumeros(TextBox_codigo.Text))
             {
                 MensajeEstado("Debe ingresar un código valido", true, true);
                 return false;
