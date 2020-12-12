@@ -16,6 +16,9 @@ namespace AppReservasSW.Views
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (VG.usuarioActual == null)
+                Response.Redirect("Login.aspx");
+
             if (!IsPostBack)
             {
                 RellenarDropdownProveedor();

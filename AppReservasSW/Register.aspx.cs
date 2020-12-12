@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using AppReservasSW.Models;
 using AppReservasSW.Controllers;
 namespace AppReservasSW
@@ -20,11 +15,8 @@ namespace AppReservasSW
            
         }
 
-     
-
         async protected void btnRegistro_Click(object sender, EventArgs e)
         {
-      
             Usuario usuario = new Usuario()
             {
                 USU_IDENTIFICACION = Identificacion.Text,
@@ -50,6 +42,5 @@ namespace AppReservasSW
                 ErrorMessage.Visible = true;
             }
         }
-
     }
 }
