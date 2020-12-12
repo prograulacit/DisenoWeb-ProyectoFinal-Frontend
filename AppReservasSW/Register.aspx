@@ -1,8 +1,12 @@
 ﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="~/Externo.Master" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="AppReservasSW.Register" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body {font-family: Arial, Helvetica, sans-serif;background-image:url("./Content/businessLogin.jpg");background-size:auto;background-repeat: no-repeat;}
 form {border: 3px solid #f1f1f1;}
+
+.registerbox{
+    border: 3px solid green;
+}
 
 input[type=text], input[type=password] {
     width: 100%;
@@ -72,8 +76,16 @@ span.psw {
     }
 }
 </style>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<div class="w-100 h-100 bg-dark text-white registerbox">
   <div class="container">
   <div class="imgcontainer"></div>
     <h1>Registro</h1>
@@ -96,9 +108,9 @@ span.psw {
     <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmacionPassword" CssClass="text-danger" ErrorMessage="La confirmación del password es obligatoria." />
     <div class="clearfix">
 
-    <asp:Button type="button" CssClass="button" ID="btnRegistro"  runat="server" Text="Registrarme" OnClick="btnRegistro_Click" /> 
+    <asp:Button type="button" class="btn btn-primary" ID="btnRegistro"  runat="server" Text="Registrarme" OnClick="btnRegistro_Click" /> 
     <br><br>
-    <asp:Button type="button" CssClass="cancelbtn" ID="btnCancelar"  runat="server" Text="Cancelar" />
+    <a href="Login.aspx" type="button" class="btn btn-danger">Cancelar</a>
     
     <asp:PlaceHolder runat="server" ID="ErrorMessage" Visible="false">
                 <p class="text-danger">
@@ -106,9 +118,12 @@ span.psw {
                 </p>
       </asp:PlaceHolder>
           
+        <br/>
+        <br/>
       <label>
       <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Recordarme
     </label>
     </div>
   </div>
+</div>
 </asp:Content>

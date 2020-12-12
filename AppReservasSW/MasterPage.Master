@@ -14,18 +14,19 @@
 <body>
     <form id="form1" runat="server">
 
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#">Proyecto DW</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
 
-            <a class="navbar-brand" href="/">Proyecto DW - Frontend</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" style="padding-left:2em;">
+        <ul class="navbar-nav mr-auto">
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración personas y empresas
+            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración de Usuarios
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" runat="server" href="~/Views/Cliente.aspx">Clientes</a>
@@ -34,9 +35,8 @@
                             <a class="dropdown-item" runat="server" href="~/Views/Gerente.aspx">Gerentes</a>
                         </div>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración autos
+            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración Autos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" runat="server" href="~/Views/Proveedores.aspx">Proveedores</a>
@@ -50,9 +50,8 @@
                             <a class="dropdown-item" runat="server" href="~/Views/Renta.aspx">Renta de auto</a>
                         </div>
                     </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración de hotel
+            <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administración de Hotel
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" runat="server" href="~/Views/Hotel.aspx">Hotel</a>
@@ -60,14 +59,18 @@
                             <a class="dropdown-item" runat="server" href="~/Views/Reserva.aspx">Reserva</a>
                         </div>
                     </li>
+        </ul>
+    </div>
+    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
                     <li>
-                        <a class="btn btn-light" href="Login.aspx">Login form</a>
+                        <a class="btn btn-secondary float-right" href="/Login.aspx">Logout</a>
                     </li>
-                </ul>
-            </div>
-        </nav>
+        </ul>
+    </div>
+</nav>
 
-        <div>
+        <div class="main-container">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
         </div>

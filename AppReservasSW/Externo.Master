@@ -8,10 +8,24 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+<style>
+.container {
+  position: relative;
+  border-style: none;
+}
 
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+</style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" class="container center">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>

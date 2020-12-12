@@ -1,13 +1,25 @@
 ﻿<%@ Page Async="true" Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Renta.aspx.cs" Inherits="AppReservasSW.Views.Renta" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="../Public/general-style.css">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;background-color:black;background-size:auto;background-repeat: no-repeat;}
+
+.defaultbox{
+    width:90%;
+    margin: auto;
+    border: 2px solid green;
+    padding: 10px;
+    background-color:white;
+}
+</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
+    <div class="defaultbox">
     <div class="container">
 
-        <asp:GridView CssClass="content_table" ID="gridView" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+        <div class="h1">Renta</div>
+
+        <asp:GridView CssClass="content_table row justify-content-center text-mute" ID="gridView" runat="server" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <FooterStyle BackColor="#CCCCCC" />
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -18,12 +30,15 @@
             <SortedDescendingCellStyle BackColor="#CAC9C9" />
             <SortedDescendingHeaderStyle BackColor="#383838" />
         </asp:GridView>
+    </div>
+        <br />        <br />      
+    <div>
 
         <div class="row">
 
             <div class="col-12 col-sm-12 col-md-12 col-lg-6">
 
-                <table class="form_table">
+                <table class="form_table row justify-content-center">
                     <tr>
                         <td class="modal-sm" style="width: 190px">Código</td>
                         <td>
@@ -116,8 +131,8 @@
         <table class="form_table">
             <tr>
                 <td class="modal-sm" style="width: 190px">
-                    <asp:Button CssClass="btn btn-light" ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
-                    <asp:Button CssClass="btn btn-light" ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
+                    <asp:Button CssClass="btn btn-success" ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" />
+                    <asp:Button CssClass="btn btn-dark" ID="btnModificar" runat="server" Text="Modificar" OnClick="btnModificar_Click" />
                 </td>
                 <td>
                     <asp:Button CssClass="btn btn-danger" ID="btnEliminar" runat="server" Text="Eliminar" OnClick="btnEliminar_Click" />
@@ -127,4 +142,5 @@
         </table>
 
     </div>
+</div>
 </asp:Content>

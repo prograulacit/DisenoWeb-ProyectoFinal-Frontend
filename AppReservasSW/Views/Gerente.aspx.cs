@@ -200,7 +200,7 @@ namespace AppReservasSW.Views
                 return false;
             }
 
-            if (!Int32.TryParse(TextBox_codigo.Text, out int num))
+            if (!Int32.TryParse(TextBox_codigo.Text, out int num2))
             {
                 MensajeEstado("Debe ingresar un código valido", true, true);
                 return false;
