@@ -38,7 +38,8 @@ namespace AppReservasSW
             }
             else
             {
-                FailureText.Text = "Error en la creación del usuario.";
+                FailureText.Text = "Número de identificación del cliente no existe. " +
+                    "Debe crear un registro de cliente en la base de datos.";
                 ErrorMessage.Visible = true;
             }
         }
